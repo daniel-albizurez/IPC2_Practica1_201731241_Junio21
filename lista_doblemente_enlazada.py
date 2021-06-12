@@ -31,10 +31,6 @@ class Lista:
                 self.first = temp
                 self.last = temp
             else:
-                """self.last.siguiente = temp
-                temp.anterior = self.last
-                self.last = temp"""
-            
                 aux = self.first
                 while aux != None:
                     apellidoAux = aux.contacto.apellido.lower()
@@ -47,18 +43,12 @@ class Lista:
                     elif apellidoAux == apellido:
                         nombreAux = aux.contacto.nombre.lower()
                         if nombreAux < nombre:
-                            #temp.siguiente = aux.siguiente
-                            #temp.anterior = aux
-                            #aux.siguiente = temp
                             aux = aux.siguiente
                         elif nombreAux >= nombre:
                             self.insertar(aux.anterior, temp)
                             break
                     elif apellidoAux > apellido:
                         self.insertar(aux.anterior, temp)
-                        #temp.siguiente = aux
-                        #temp.anterior = aux.anterior
-                        #aux.anterior = temp
                         break
             while self.first.anterior != None:
                 self.first = self.first.anterior
@@ -68,18 +58,6 @@ class Lista:
         else:
             print("Numero ya existente")
 
-    """def insertarDespues(self, anterior, nuevo):
-        anterior.siguiente.anterior = nuevo
-        nuevo.siguiente = anterior.siguiente
-        nuevo.anterior = anterior
-        anterior.siguiente = nuevo
-
-    def insertarAntes(self, nuevo, siguiente):
-        siguiente.anterior.siguiente = nuevo
-        nuevo.anterior = siguiente.anterior
-        siguiente.anterior = nuevo
-        nuevo.siguiente = siguiente
-    """
     def insertar(self, anterior, nuevo):
         if  anterior != None:
             if anterior.siguiente != None:
@@ -117,16 +95,5 @@ class Lista:
             if temp != self.last:
                 estructura += temp.contacto.telefono + "->" + temp.siguiente.contacto.telefono + "\n" 
             temp = temp.siguiente
-
         estructura += "}"
         return estructura
-#n1 = Nodo(None, None, "45")
-#n1.imprimir()
-#lista = Lista()
-#lista.save("Natalia", "Albizurez", "408564")
-#lista.save("Daniel", "Albizurez", "46")
-#lista.save("Martin", "Albizurez", "47")
-#lista.save("Rodrigo", "Aguilar", "48")
-#lista.save("Maria", "Alpirez", "50")
-#print(lista.count)
-#lista.imprimir()
