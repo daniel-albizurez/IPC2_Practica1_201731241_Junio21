@@ -1,11 +1,11 @@
 import lista_doblemente_enlazada
 import os
 option = 1
+agenda = lista_doblemente_enlazada.Lista()
 while option != "4":
     print("Elija una opcion")
     options = ["Ingresar nuevo contacto", "Buscar contacto", "Visualizar agenda", "Salir"]
     cont = 1
-    agenda = lista_doblemente_enlazada.Lista()
     for option in options:
         print(str(cont) + '. ' + option)
         cont+=1
@@ -24,7 +24,7 @@ while option != "4":
         f.write(agenda.generarDot())
         f.close()
 
-        os.system("dot -Tjpg lista.dot -o agenda.png")
+        os.system("dot -Tjpg agenda.dot -o agenda.png")
         os.startfile("agenda.png")
     elif option == "4":
         pass

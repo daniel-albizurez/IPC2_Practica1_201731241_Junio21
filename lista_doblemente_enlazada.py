@@ -95,5 +95,6 @@ class Lista:
             if temp != self.last:
                 estructura += temp.contacto.telefono + "->" + temp.siguiente.contacto.telefono + "\n" 
             temp = temp.siguiente
+
         estructura += "}"
         return estructura
