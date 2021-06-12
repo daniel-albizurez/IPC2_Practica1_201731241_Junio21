@@ -1,5 +1,5 @@
 import lista_doblemente_enlazada
-#print("Elijio: " + options[int(option)-1])
+import os
 option = 1
 while option != "4":
     print("Elija una opcion")
