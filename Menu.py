@@ -2,6 +2,19 @@ import lista_doblemente_enlazada
 import os
 option = 1
 agenda = lista_doblemente_enlazada.Lista()
+
+def nuevoContacto():
+        nombre = input("Ingrese el nombre del contacto ")
+        apellido = input("Ingrese el apellido del contacto ")
+        numero = input("Ingrese el numero telefonico del contacto ")
+        if agenda.buscar(numero) != None:
+            print("Contacto ya existente")
+            return
+        agenda.save(nombre, apellido, numero)
+        if agenda.buscar(numero) != None:
+            print("Agregado exitosamente")
+
+
 while option != "4":
     print("Elija una opcion")
     options = ["Ingresar nuevo contacto", "Buscar contacto", "Visualizar agenda", "Salir"]
@@ -11,14 +24,15 @@ while option != "4":
         cont+=1
     option = input("\nIngrese el numeral de la opcion que desea ejecutar ")
     if option == "1":
-        nombre = input("Ingrese el nombre del contacto ")
-        apellido = input("Ingrese el apellido del contacto ")
-        numero = input("Ingrese el numero telefonico del contacto ")
-        agenda.save(nombre, apellido, numero)
+        nuevoContacto()
     elif option == "2":
         numero = input("Ingrese el numero telefonico del contacto ")
         contacto = agenda.buscar(numero)
-        print(contacto)
+        if contacto == None:
+            print("Contacto no existente")
+            agregar = input("¿Desea agregarlo? Y/N ")
+            if agregar == "Y":
+                nuevoContacto()
     elif option == "3":
         f = open("agenda.dot", "w")
         f.write(agenda.generarDot())

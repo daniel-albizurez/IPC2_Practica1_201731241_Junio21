@@ -23,40 +23,37 @@ class Lista:
         self.count = 0 
 
     def save(self, nombre, apellido, numero):
-        if self.buscar(numero) == None:
-            temp = Nodo(nombre, apellido, numero)
-            nombre = nombre.lower()
-            apellido = apellido.lower()
-            if self.first == None:
-                self.first = temp
-                self.last = temp
-            else:
-                aux = self.first
-                while aux != None:
-                    apellidoAux = aux.contacto.apellido.lower()
-                    if apellidoAux < apellido:
-                        if aux.siguiente == None:
-                            self.insertar(aux, temp)
-                            break
-                        else:
-                            aux = aux.siguiente
-                    elif apellidoAux == apellido:
-                        nombreAux = aux.contacto.nombre.lower()
-                        if nombreAux < nombre:
-                            aux = aux.siguiente
-                        elif nombreAux >= nombre:
-                            self.insertar(aux.anterior, temp)
-                            break
-                    elif apellidoAux > apellido:
+        temp = Nodo(nombre, apellido, numero)
+        nombre = nombre.lower()
+        apellido = apellido.lower()
+        if self.first == None:
+            self.first = temp
+            self.last = temp
+        else:
+            aux = self.first
+            while aux != None:
+                apellidoAux = aux.contacto.apellido.lower()
+                if apellidoAux < apellido:
+                    if aux.siguiente == None:
+                        self.insertar(aux, temp)
+                        break
+                    else:
+                        aux = aux.siguiente
+                elif apellidoAux == apellido:
+                    nombreAux = aux.contacto.nombre.lower()
+                    if nombreAux < nombre:
+                        aux = aux.siguiente
+                    elif nombreAux >= nombre:
                         self.insertar(aux.anterior, temp)
                         break
-            while self.first.anterior != None:
-                self.first = self.first.anterior
-            while self.last.siguiente != None:
-                self.last = self.last.siguiente
-            self.count += 1
-        else:
-            print("Numero ya existente")
+                elif apellidoAux > apellido:
+                    self.insertar(aux.anterior, temp)
+                    break
+        while self.first.anterior != None:
+            self.first = self.first.anterior
+        while self.last.siguiente != None:
+            self.last = self.last.siguiente
+        self.count += 1
 
     def insertar(self, anterior, nuevo):
         if  anterior != None:
